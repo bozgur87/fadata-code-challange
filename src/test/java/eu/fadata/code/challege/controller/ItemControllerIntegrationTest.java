@@ -20,20 +20,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Code Challenge – Adayın çözmesi beklenen senaryolar:
- *
- * 1) CONTEXT TEMİZLİĞİ: Testler arasında Spring context / repository state temizlenmiyor.
- *    Bir test veri eklediğinde diğer test boş liste bekleyebilir ve fail eder.
- *    Aday: @DirtiesContext veya @BeforeEach ile repository temizliği (veya uygun çözüm) kullanmalı.
- *
- * 2) API TASARIMI: Create endpoint'ine test "name" alanı ile istek gönderiyor; controller şu an "title" bekliyor.
- *    Aday: API'yi testin beklediği sözleşmeye göre düzeltmeli (request body'de "name" kabul edilmeli).
- *
- * 3) ÇAKIŞAN İKİ SENARYO: İki test farklı sıralama bekliyor (biri isme göre artan, biri oluşturulma tarihine göre azalan).
- *    Sadece bir sıralama uygulanırsa biri geçer biri fail eder. Aday: Her iki testin de geçmesi için
- *    API'de sort parametresi kullanıp testlerde doğru parametreyi (sort=name_asc / sort=created_desc) kullanmalı.
- */
 @SpringBootTest
 @AutoConfigureMockMvc
 class ItemControllerIntegrationTest {
@@ -67,10 +53,6 @@ class ItemControllerIntegrationTest {
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.length()", is(1)));
 	}
-
-	// ---------- Senaryo 2: API tasarımı ----------
-	// Test "name" alanı ile POST yapıyor. Controller şu an "title" kullanıyor; istek başarısız veya name null döner.
-	// Aday: CreateItemRequest ve controller'ı "name" kabul edecek şekilde değiştirmeli.
 
 	@Test
 	void createAcceptsNameField() throws Exception {
