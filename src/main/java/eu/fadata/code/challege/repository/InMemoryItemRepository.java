@@ -9,8 +9,8 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * In-memory repository. Singleton bean olduğu için testler arasında
- * state paylaşılır; context temizlenmezse testler birbirini etkiler.
+ * In-memory repository. As a singleton bean, state is shared between tests;
+ * if the context is not reset, tests can affect each other.
  */
 @Repository
 public class InMemoryItemRepository implements ItemRepository {

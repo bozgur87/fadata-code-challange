@@ -4,8 +4,8 @@ import java.time.Instant;
 
 /**
  * API response DTO for Item.
- * Not: Adayın bir testte "id" alanının dönmesini beklemesi için
- * API tasarımını (field ismi veya DTO) buna göre değiştirmesi gerekebilir.
+ * Note: For a test to expect the "id" field in the response, the API design
+ * (field name or DTO) may need to be adjusted accordingly.
  */
 public class ItemResponse {
 
