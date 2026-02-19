@@ -46,4 +46,9 @@ public class InMemoryItemRepository implements ItemRepository {
 		store.clear();
 		idGenerator.set(1);
 	}
+
+	public List<Item> findByNameContainingIgnoreCase(String keyword) {
+		// TODO: filter store by name containing keyword (case-insensitive)
+		return List.of();
+	}
 }

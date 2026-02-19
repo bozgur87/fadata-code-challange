@@ -24,6 +24,11 @@ public class ItemController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(created);
 	}
 
+	@GetMapping("/search")
+	public List<ItemResponse> searchByName(@RequestParam String keyword) {
+		return itemService.searchByName(keyword);
+	}
+
 	@GetMapping
 	public List<ItemResponse> list(@RequestParam(required = false) String xSort) {
 		return itemService.findAll(xSort);

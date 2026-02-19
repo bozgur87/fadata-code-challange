@@ -1,0 +1,89 @@
+# ========================
+# Java / Spring Boot
+# ========================
+
+# Build klasörleri
+**/build/
+target/
+out/
+tmp/
+dist/
+bin/
+
+# Derlenmiş sınıf dosyaları
+**/classes/
+**/*.class
+**/generated/
+
+# WAR / EAR dosyaları
+**/*.war
+**/*.ear
+
+# Gradle
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+/.gradle/
+
+# Maven
+.mvn/
+!mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Log dosyaları
+*.log
+
+# Sonar
+**/.sonar/
+
+# Temp / cwallet / WL
+**/cwallet.sso.lck
+**/temp
+**/.WL_internal
+
+# ADH / ADF projeleri
+**/adf/**/.data
+**/adf/**/classes
+**/adf/**/*.war
+**/adf/**/*.ear
+**/adf/**/deploy
+**/adf/**/dist
+**/adf/**/.sonar
+**/adf/**/cwallet.sso.lck
+**/adf/**/temp
+**/adf/**/.WL_internal
+**/adf/**/ovd
+**/adf/**/build
+**/adf/**/tmp
+**/adf/**/resourcebundles
+**/adf/**/BuildScripts
+**/adf/**/public_html/conf
+
+# Do NOT ignore certain build files
+!**/adf/**/BuildScripts/resources/buildLocal.xml
+!**/adf/**/BuildScripts/resources/build.gradle.properties
+
+# Automated tests
+/automatedTests/*
+
+# Database resources
+databaseObjects/src/main/resources/versions/
+databaseObjects/src/main/resources/db.master-version.xml
+
+# Frontend
+frontendApplication/adf/DeploymentScripts/
+frontendApplication/adf/**/src/org/apache/myfaces/trinidadinternal/share/util/
+
+# Backend
+backendApplication/deployable/rest-api-jaxrs/insis-rest/DeploymentScripts/
+backendApplication/deployable/rest-api-jaxrs/insis-rest/RESTPeopleServices/BuildScripts/resources/
+backendApplication/deployable/rest-api-jaxrs/insis-rest/RESTPeopleServices/Runner/public_html/
+backendApplication/deployable/rest-api-jaxrs/insis-rest/RESTPeopleServices/src/org/apache/myfaces/trinidadinternal/share/util/
+
+# macOS Finder metadata
+.DS_Store

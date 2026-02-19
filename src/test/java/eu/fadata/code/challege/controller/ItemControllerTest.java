@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
@@ -51,6 +52,37 @@ class ItemControllerTest {
 		mockMvc.perform(get("/api/items"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$", empty()));
+	}
+
+	@Test
+	void searchByName_returnsMatchingItems() throws Exception {
+		Instant now = Instant.now();
+		List<ItemResponse> results = List.of(
+				new ItemResponse(1L, "Spring Boot Guide", now),
+				new ItemResponse(3L, "Spring Security Intro", now)
+		);
+		when(itemService.searchByName("spring")).thenReturn(results);
+
+		mockMvc.perform(get("/api/items/search").param("q", "spring"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$", hasSize(2)))
+				.andExpect(jsonPath("$[0].id", is(1)))
+				.andExpect(jsonPath("$[0].name", is("Spring Boot Guide")))
+				.andExpect(jsonPath("$[1].id", is(3)))
+				.andExpect(jsonPath("$[1].name", is("Spring Security Intro")));
+
+		verify(itemService).searchByName(eq("spring"));
+	}
+
+	@Test
+	void searchByName_returnsEmptyWhenNoMatch() throws Exception {
+		when(itemService.searchByName("nonexistent")).thenReturn(List.of());
+
+		mockMvc.perform(get("/api/items/search").param("keyword", "nonexistent"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$", empty()));
+
+		verify(itemService).searchByName(eq("nonexistent"));
 	}
 
 	@Test

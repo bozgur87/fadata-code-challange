@@ -24,6 +24,11 @@ public class ItemService {
 		return toResponse(saved);
 	}
 
+	public List<ItemResponse> searchByName(String keyword) {
+		// TODO: filter items from repository by name (case-insensitive) and return results
+		return List.of();
+	}
+
 	public List<ItemResponse> findAll(String sort) {
 		Stream<Item> stream = itemRepository.findAll().stream();
 		if ("name_asc".equals(sort)) {
