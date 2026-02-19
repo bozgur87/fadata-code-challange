@@ -25,7 +25,7 @@ public class ItemController {
 	}
 
 	@GetMapping("/search")
-	public List<ItemResponse> searchByName(@RequestParam String keyword) {
+	public List<ItemResponse> searchByName(@RequestParam(name = "keyword") String keyword) {
 		return itemService.searchByName(keyword);
 	}
 
