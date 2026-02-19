@@ -63,7 +63,7 @@ class ItemControllerTest {
 		);
 		when(itemService.searchByName("spring")).thenReturn(results);
 
-		mockMvc.perform(get("/api/items/search").param("q", "spring"))
+		mockMvc.perform(get("/api/items/search").param("keyword", "spring"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(2)))
 				.andExpect(jsonPath("$[0].id", is(1)))
